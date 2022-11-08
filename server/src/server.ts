@@ -13,8 +13,19 @@ const app = express()
 app.use(express.json())
 app.use(cors())
 
-app.get('/', (req, res) => {
-  res.send({ message: 'Hello, world!' })
+app.get('/', async (req, res) => {
+
+  await prisma.user.create({
+    data: {
+      name: 'jorgão',
+      email: 'jorgão@gmail.com',
+      enrollment: '321411',
+      password: '123456',
+    }
+  })
+  console.log('oi')
+  res.send({ message: 'Hello, world abadawcd!' })
+
 })
 
 const PORT = process.env.PORT || 3333
