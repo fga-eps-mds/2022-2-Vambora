@@ -1,11 +1,21 @@
 FROM node
 
-WORKDIR /app
+WORKDIR /usr/app
 
-COPY package*.json ./ 
+#COPY package*.json ./ 
+COPY package.json ./ 
+COPY ./.docker/entrypoint.sh /entrypoint.sh
+
+RUN apt-get update && apt-get install -y wget
+
+ENV DOCKERIZE_VERSION v0.6.1
+RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
+    && tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
+    && rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
 
 RUN npm install
 
 COPY . .
 
-RUN npm ci
+RUN chmod +x /entrypoint.sh
+CMD ["/entrypoint.sh"]

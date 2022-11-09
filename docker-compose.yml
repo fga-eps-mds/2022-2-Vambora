@@ -1,0 +1,28 @@
+version: '3.7'
+
+services:
+  postgres:
+    image: postgres
+    container_name: database_mds
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=docker
+      - POSTGRES_PASSWORD=docker_mds
+      - POSTGRES_DB=mds
+    volumes:
+      - pgdata:/data/postgres
+  app:
+    build: ./server
+    container_name: mds
+    ports:
+      - 3333:3333
+      - 5555:5555
+    volumes:
+      - ./server:/usr/app
+    depends_on:
+      - postgres
+volumes:
+  pgdata:
+    driver: local

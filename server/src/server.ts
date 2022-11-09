@@ -15,14 +15,14 @@ app.get('/', async (req, res) => {
 
   await prisma.user.create({
     data: {
-      name: 'jorgão',
-      email: 'jorgão@gmail.com',
-      enrollment: '321411',
+      name: 'jorgin',
+      email: 'jorginhoo@gmail.com',
+      enrollment: '3214',
       password: '123456',
     }
   })
-  console.log('oi')
-  res.send({ message: 'Hello, world abadawcd!' })
+  res.send({ message: 'Hello, world!!' })
+  console.log("teste")
 
 })
 
