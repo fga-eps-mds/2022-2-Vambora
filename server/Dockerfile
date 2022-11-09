@@ -1,16 +1,11 @@
-FROM node:alpine
+FROM node
 
-WORKDIR /usr/app
+WORKDIR /app
 
-COPY package.json / 
-
-COPY prisma ./prisma/
+COPY package*.json ./ 
 
 RUN npm install
-RUN npx prisma generate
 
 COPY . .
 
-EXPOSE 3333
-
-CMD ["npm", "run", "dev"]
+RUN npm ci
