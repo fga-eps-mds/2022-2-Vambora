@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
+    "dev": "tsx watch src/server.ts",
     "test": "vitest"
   },
   "keywords": [],
@@ -31,6 +31,7 @@
     "@prisma/client": "^4.6.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "tsx": "^3.11.0"
   }
 }

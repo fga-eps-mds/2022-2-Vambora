@@ -21,9 +21,7 @@ app.get('/', async (req, res) => {
       password: '123456',
     }
   })
-  console.log('oi')
-  res.send({ message: 'Hello, world abadawcd!' })
-
+  res.send({ message: 'Hello, world !' })
 })
 
 const PORT = process.env.PORT || 3333
