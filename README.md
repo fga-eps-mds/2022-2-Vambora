@@ -49,3 +49,29 @@ ou
   yarn ios
 ```
 respectivamente.
+
+## Backlog do produto
+
+|Épico|Feature|US|Descrição|
+|--|--|--|--|
+|E01|FT01|US01|Eu, como usuário, gostaria de criar uma conta.|
+|E01|FT01|US02|Eu, como usuário, gostaria de ver minha conta.|
+|E01|FT01|US03|Eu, como usuário, gostaria de editar os dados da minha conta.|
+|E01|FT01|US04|Eu, como usuário, gostaria de apagar minha conta.|
+|E01|FT02|US05|Eu, como usuário, gostaria de criar meus dias de aulas.|
+|E01|FT02|US06|Eu, como usuário, gostaria de ver meus dias de aulas.|
+|E01|FT02|US07|Eu, como usuário, gostaria de editar meus dias de aulas.|
+|E01|FT02|US08|Eu, como usuário, gostaria de apagar meus dias de aulas.|
+|E01|FT03|US09|Eu, como usuário, gostaria de criar meus horários.|
+|E01|FT03|US10|Eu, como usuário, gostaria de ver meus horários.|
+|E01|FT03|US11|Eu, como usuário, gostaria de editar meus horários.|
+|E01|FT03|US12|Eu, como usuário, gostaria de apagar meus horários.|
+|E02|FT04|US13|Eu, como usuário, gostaria de criar uma rota.|
+|E02|FT04|US14|Eu, como usuário, gostaria de ver minhas rotas.|
+|E02|FT04|US15|Eu, como usuário, gostaria de editar uma rota.|
+|E02|FT04|US16|Eu, como usuário, gostaria de apagar uma rota.|
+|E02|FT05|US17|Eu, como usuário, gostaria de informar quantas vagas tem no meu carro.|
+|E02|FT05|US18|Eu, como usuário, gostaria de solicitar uma vaga em um carro.|
+|E02|FT06|US19|Eu, como usuário, gostaria de ver as rotas próximas a minha localização e que tem o mesmo destino que o meu.|
+|E02|FT06|US20|Eu, como usuário, gostaria que me enviassem solicitações para acessar meu contato.|
+|E02|FT06|US21|Eu, como usuário, gostaria de enviar solicitações para acessar o contato de outras pessoas.|
