@@ -12,10 +12,17 @@ datasource db {
 }
 
 model User {
-  id         String   @id @default(uuid())
-  email      String   @unique
-  name       String
-  enrollment String   @unique
-  password   String
-  createdAt  DateTime @default(now())
+
+  id              String   @id @default(uuid())
+  email           String   @unique
+  name            String
+  enrollment      String   @unique
+  password        String
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  friends         User[]   @relation("friends")
+  friendsRelation User[]   @relation("friends")
 }
+
+
