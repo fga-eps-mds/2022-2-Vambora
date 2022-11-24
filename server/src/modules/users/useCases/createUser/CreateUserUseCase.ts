@@ -1,4 +1,5 @@
 import { PrismaUsersRepository } from "../../repositories/prisma/PrismaUsersRepository";
+import { inject, injectable } from "tsyringe";
 
 interface IRequest {
   email: string,
@@ -7,8 +8,10 @@ interface IRequest {
   password: string,
 }
 
+@injectable()
 class CreateUserUseCase {
-  constructor(private usersRepository: PrismaUsersRepository = new PrismaUsersRepository()) { }
+  constructor(
+    @inject("UsersRepository") private usersRepository: PrismaUsersRepository ) { }
   async execute({ email, name, enrollment, password }: IRequest) {
     this.usersRepository.create({
       email,

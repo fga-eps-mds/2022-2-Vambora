@@ -1,13 +1,14 @@
 import { Request, Response } from "express";
 import { CreateUserUseCase } from "./CreateUserUseCase";
+import { container } from "tsyringe";
 
 class CreateUserController {
-  constructor(private createUserUseCase: CreateUserUseCase) { }
 
   async handle(req: Request, res: Response) {
     const { email, name, enrollment, password } = req.body
+    const createUserUseCase = container.resolve(CreateUserUseCase)
 
-    this.createUserUseCase.execute({
+    createUserUseCase.execute({
       email,
       name,
       enrollment,
