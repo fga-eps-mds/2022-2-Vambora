@@ -1,5 +1,6 @@
 import { inject, injectable } from "tsyringe";
-import { IMailAdapter } from "../../../../adapters/mail-adapter";
+import { IMailAdapter } from "../../../../shared/adapters/mail-adapter";
+import { AppError } from "../../../../shared/errors/AppError";
 import { IUsersRepository } from "../../repositories/IUsersRepository";
 
 interface IRequest {
@@ -21,27 +22,30 @@ class CreateUserUseCase {
     const domain = email.split("@")[1]
 
     if (domain !== 'aluno.unb.br' && domain !== 'unb.br') {
-      throw new Error("Cannot create e-mail from outside UnB.")
+      throw new AppError("Cannot create e-mail from outside UnB.")
     }
 
     const userExists = await this.usersRepository.findUser(email)
 
     if (userExists) {
-      throw new Error("User already exists!")
+      throw new AppError("User already exists!")
     }
+
+    const verificationCode = Math.floor(Math.random() * 1000000)
 
     await this.usersRepository.create({
       email,
       name,
       enrollment,
-      password
+      password,
+      verificationCode
     })
 
     await this.mailAdapter.sendMail({
       subject: "Seja bem-vindo(a) ao Vambora!",
       body: [
         `<body>`,
-        `<h1>Teste</h1>`,
+        `<h1>${verificationCode}</h1>`,
         `</body>`,
       ].join("\n"),
       user_email: email
