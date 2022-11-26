@@ -1,4 +1,5 @@
 import { inject, injectable } from "tsyringe";
+import * as brcypt from 'bcryptjs'
 import { IMailAdapter } from "../../../../shared/adapters/mail-adapter";
 import { AppError } from "../../../../shared/errors/AppError";
 import { IUsersRepository } from "../../repositories/IUsersRepository";
@@ -19,6 +20,10 @@ class CreateUserUseCase {
     private mailAdapter: IMailAdapter
   ) { }
   async execute({ email, name, enrollment, password }: IRequest) {
+    if (!email || !name || !enrollment || !password) {
+      throw new AppError("Missing parameters")
+    }
+
     const domain = email.split("@")[1]
 
     if (domain !== 'aluno.unb.br' && domain !== 'unb.br') {
@@ -33,11 +38,13 @@ class CreateUserUseCase {
 
     const verificationCode = Math.floor(Math.random() * 1000000)
 
+    const hashedPassword = await brcypt.hash(password, 10)
+
     await this.usersRepository.create({
       email,
       name,
       enrollment,
-      password,
+      password: hashedPassword,
       verificationCode
     })
 
