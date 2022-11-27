@@ -14,7 +14,8 @@ class UsersRepositoryInMemory implements IUsersRepository {
       name,
       email,
       enrollment,
-      password
+      password,
+      verificationCode: Math.floor(Math.random() * 100000),
     })
 
     this.usersRepository.push(user);
