@@ -1,24 +1,18 @@
-import styled from 'styled-components/native';
+import styled from "styled-components/native";
 
-export const AreaDoCelular = styled.View`
-    flex: 1;
-    background-color: #f5f5f5;
-`;
-
-export const AreaImagem = styled.View`
-  flex: 1;
-  background-color: red;
+export const Container = styled.View`
+  background-color: #f5f5f5;
   align-items: center;
   justify-content: center;
-`;
-
-export const AreaTexto = styled.View`
-  flex:1;
-  background-color: green;
+  flex: 1;
 `;
 
 export const Title = styled.Text`
-  font-size: 22;
-  text-align: center;
-  color: black;
+  color: #8257e5;
+  font-size: 32px;
+`;
+
+export const LogoContainer = styled.View`
+  border-radius: 22px;
+  overflow: hidden;
 `;

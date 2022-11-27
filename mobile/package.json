@@ -9,9 +9,12 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@expo-google-fonts/quicksand": "^0.2.2",
     "@react-navigation/native": "^6.0.14",
     "@react-navigation/native-stack": "^6.9.2",
     "expo": "^47.0.8",
+    "expo-app-loading": "~2.1.1",
+    "expo-font": "~11.0.1",
     "expo-splash-screen": "~0.17.5",
     "expo-status-bar": "~1.4.2",
     "react": "18.1.0",
@@ -24,8 +27,14 @@
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
+    "@react-native-community/eslint-config": "^3.2.0",
     "@types/react": "~18.0.24",
     "@types/react-native": "~0.70.6",
+    "@typescript-eslint/eslint-plugin": "^5.44.0",
+    "@typescript-eslint/parser": "^5.44.0",
+    "eslint": "^8.28.0",
+    "eslint-plugin-react": "^7.31.11",
+    "prettier": "^2.8.0",
     "react-native-svg-transformer": "^1.0.0"
   },
   "private": true
