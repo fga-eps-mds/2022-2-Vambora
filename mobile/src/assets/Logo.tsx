@@ -5,9 +5,9 @@ export function Logo(props) {
   return (
     <Svg
       xmlns="http://www.w3.org/2000/svg"
-      width={380}
+      width={330}
       viewBox="0 0 810 809.999993"
-      height={380}
+      height={330}
       {...props}
     >
       <Defs>

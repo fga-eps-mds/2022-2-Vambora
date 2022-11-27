@@ -13,6 +13,12 @@ export const Title = styled.Text`
 `;
 
 export const LogoContainer = styled.View`
+  margin-top: 50px;
   border-radius: 22px;
   overflow: hidden;
+`;
+
+export const ButtonContainer = styled.View`
+  margin-top: 50px;
+  width: 330;
 `;

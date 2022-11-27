@@ -1,9 +1,10 @@
 import React from "react";
 
-import { Container, LogoContainer } from "./styles";
+import { Container, LogoContainer, ButtonContainer } from "./styles";
 
 import { Logo } from "../../assets/Logo";
 import { Text } from "../../components/Global";
+import { Button } from "../../components/Button";
 
 export default function Welcome() {
   return (
@@ -14,6 +15,9 @@ export default function Welcome() {
       <LogoContainer>
         <Logo />
       </LogoContainer>
+      <ButtonContainer>
+        <Button>Entrar</Button>
+      </ButtonContainer>
     </Container>
   );
 }
