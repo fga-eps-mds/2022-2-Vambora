@@ -4,10 +4,10 @@ import { ICreateUserDTO } from "../../dtos/ICreateUserDTO";
 import { IUsersRepository } from "../../repositories/IUsersRepository";
 
 class PrismaUsersRepository implements IUsersRepository {
-  async create(data: ICreateUserDTO): Promise<void> {
+  async create(data: ICreateUserDTO): Promise<User> {
     const { email, name, enrollment, password, verificationCode } = data
 
-    await prisma.user.create({
+    const user = await prisma.user.create({
       data: {
         email,
         name,
@@ -16,6 +16,8 @@ class PrismaUsersRepository implements IUsersRepository {
         verificationCode
       }
     })
+
+    return user
   }
 
   async findUser(email: string): Promise<User | null> {

@@ -5,5 +5,5 @@ export interface SendMailData {
 }
 
 export interface IMailAdapter {
-  sendMail: (data: SendMailData) => Promise<void>;
+  sendMail?: (data: SendMailData) => Promise<void>;
 }

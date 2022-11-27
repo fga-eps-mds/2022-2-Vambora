@@ -24,12 +24,15 @@ class CreateUserUseCase {
       throw new AppError("Missing parameters")
     }
 
+    if (!/^(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/.test(password)) {
+      throw new AppError("Password must contain at least 8 characters, one capital letter and one number")
+    }
+
     const domain = email.split("@")[1]
 
     if (domain !== 'aluno.unb.br' && domain !== 'unb.br') {
       throw new AppError("Cannot create e-mail from outside UnB.")
     }
-
     const userExists = await this.usersRepository.findUser(email)
 
     if (userExists) {
@@ -40,7 +43,7 @@ class CreateUserUseCase {
 
     const hashedPassword = await brcypt.hash(password, 10)
 
-    await this.usersRepository.create({
+    const user = await this.usersRepository.create({
       email,
       name,
       enrollment,
@@ -48,7 +51,7 @@ class CreateUserUseCase {
       verificationCode
     })
 
-    await this.mailAdapter.sendMail({
+    await this.mailAdapter.sendMail!({
       subject: "Seja bem-vindo(a) ao Vambora!",
       body: [
         `<body>`,
@@ -57,6 +60,8 @@ class CreateUserUseCase {
       ].join("\n"),
       user_email: email
     })
+
+    return user
   }
 }
 
