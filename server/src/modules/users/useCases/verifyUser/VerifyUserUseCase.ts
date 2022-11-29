@@ -16,6 +16,10 @@ class VerifyUserUseCase {
   async execute({ verificationCode, user_id }: IRequest) {
     const userVerificationCode = await this.usersRepository.getVerificationCode(user_id);
 
+    if (!userVerificationCode) {
+      throw new AppError("User not found");
+    }
+
     if (userVerificationCode === parseInt(verificationCode)) {
       await this.usersRepository.verifyUser(user_id)
     } else {

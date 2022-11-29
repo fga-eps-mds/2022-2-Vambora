@@ -39,6 +39,12 @@ describe("Create User", () => {
 
     expect(user.isVerified).toBeTruthy()
   })
+  it("should not be able to verify a non existing user", async () => {
+    await expect(verifyUserUseCase.execute({
+      verificationCode: "non-existing-user",
+      user_id: "non-existing-user",
+    })).rejects.toThrow()
+  })
 
   it("should not be able to verify an user with an invalid code", async () => {
     const user = await createUserUseCase.execute({
