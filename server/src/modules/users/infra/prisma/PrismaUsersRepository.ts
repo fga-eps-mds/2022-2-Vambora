@@ -1,11 +1,11 @@
-import { User } from "@prisma/client";
-import { prisma } from "../../../../prisma";
-import { ICreateUserDTO } from "../../dtos/ICreateUserDTO";
-import { IUsersRepository } from "../../repositories/IUsersRepository";
+import { User } from '@prisma/client';
+import { prisma } from '../../../../prisma';
+import { ICreateUserDTO } from '../../dtos/ICreateUserDTO';
+import { IUsersRepository } from '../../repositories/IUsersRepository';
 
 class PrismaUsersRepository implements IUsersRepository {
   async create(data: ICreateUserDTO): Promise<User> {
-    const { email, name, enrollment, password, verificationCode } = data
+    const { email, name, enrollment, password, verificationCode } = data;
 
     const user = await prisma.user.create({
       data: {
@@ -13,43 +13,53 @@ class PrismaUsersRepository implements IUsersRepository {
         name,
         enrollment,
         password,
-        verificationCode
-      }
-    })
+        verificationCode,
+      },
+    });
 
-    return user
+    return user;
   }
 
   async findUser(email: string): Promise<User | null> {
     const userExists = await prisma.user.findFirst({
       where: {
-        email
+        email,
       },
-    })
+    });
 
-    return userExists
+    return userExists;
+  }
+
+  async findUserById(user_id: string): Promise<User | null> {
+    const userExists = await prisma.user.findFirst({
+      where: {
+        id: user_id,
+      },
+    });
+
+    return userExists;
   }
 
   async getVerificationCode(user_id: string): Promise<number | null> {
     const user = await prisma.user.findFirst({
       where: {
-        id: user_id
-      }
-    })
+        id: user_id,
+      },
+    });
 
-    return user?.verificationCode || null
+    return user?.verificationCode || null;
   }
 
   async verifyUser(user_id: string): Promise<void> {
     await prisma.user.update({
       where: {
-        id: user_id
+        id: user_id,
       },
       data: {
-        isVerified: true
-      }
-    })
+        isVerified: true,
+      },
+    });
   }
 }
 
-export { PrismaUsersRepository }
+export { PrismaUsersRepository };
