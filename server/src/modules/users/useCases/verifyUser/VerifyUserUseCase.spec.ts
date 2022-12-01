@@ -1,4 +1,3 @@
-import { User } from '@prisma/client'
 import 'reflect-metadata'
 import { beforeEach, describe, it, expect } from 'vitest'
 import { IMailAdapter } from '../../../../shared/adapters/mail-adapter'
