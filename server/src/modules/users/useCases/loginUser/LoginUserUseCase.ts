@@ -43,7 +43,7 @@ class LoginUserUseCase {
     }
 
 
-    const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET!, {
+    const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET || "fake jwt secret for testing", {
       expiresIn: '1d'
     })
 
