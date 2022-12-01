@@ -3,11 +3,20 @@
     "es2021": true,
     "node": true
   },
-  "extends": ["standard-with-typescript", "prettier"],
+  "extends": [
+    "airbnb-base",
+    "airbnb-typescript/base",
+    "prettier"
+  ],
   "overrides": [],
   "parserOptions": {
+    "project": [
+      "./tsconfig.json"
+    ],
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "rules": {}
+  "rules": {
+    "class-methods-use-this": "off",
+  }
 }

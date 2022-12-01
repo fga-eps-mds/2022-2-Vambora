@@ -7,4 +7,5 @@ export interface IUsersRepository {
   findUserById(user_id: string): Promise<User | null>;
   getVerificationCode(user_id: string): Promise<number | null>;
   verifyUser(user_id: string): Promise<void>;
+  updateUser(user_id: string, email: string, name: string, enrollment: string): Promise<User>;
 }
