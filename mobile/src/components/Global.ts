@@ -8,7 +8,7 @@ interface TextProps {
   opacity?: number;
 }
 
-export const Text = styled.Text<TextProps>`
+export const TextGlobal = styled.Text<TextProps>`
   font-family: ${({ weight }) => weight ? `Quicksand-${weight}` : "Quicksand-500"};
   color: ${({ color }) => color || "#8257E5"};
   font-size: ${({ size }) => size ? `${size}px` : "16px"};

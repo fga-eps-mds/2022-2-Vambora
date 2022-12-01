@@ -1,16 +1,17 @@
-import { Text } from "../Global";
+import { ViewProps } from "react-native";
+import { TextGlobal } from "../Global";
 import { Container } from "./styles";
 
-interface ButtonProps {
+interface ButtonProps extends ViewProps {
   children: string;
 }
 
 export function Button({ children }: ButtonProps) {
   return (
     <Container>
-      <Text weight="700" color="#ffffff" size="25">
+      <TextGlobal weight="700" color="#ffffff" size="25">
         {children}
-      </Text>
+      </TextGlobal>
     </Container>
   );
 }
