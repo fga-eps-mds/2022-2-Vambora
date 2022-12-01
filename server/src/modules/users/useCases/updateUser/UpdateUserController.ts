@@ -6,7 +6,7 @@ import { UpdateUserUseCase } from "./UpdateUserUseCase";
 
 
 class UpdateUserController {
-  handle(req: Request, res: Response) {
+  async handle(req: Request, res: Response) {
     const { user_id } = req.headers;
     const { email, name, enrollment } = req.body;
 
@@ -14,13 +14,11 @@ class UpdateUserController {
       throw new AppError('Invalid parameters');
     }
 
-
     const updateUserUseCase = container.resolve(UpdateUserUseCase)
 
-    const user = updateUserUseCase.execute(user_id as string, email, name, enrollment);
+    const user = await updateUserUseCase.execute(user_id as string, email, name, enrollment);
 
     res.status(200).json(user)
-
   }
 }
 

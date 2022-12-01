@@ -13,8 +13,8 @@ const loginUserController = new LoginUserController();
 const readUserController = new ReadUserController();
 const updateUserController = new UpdateUserController();
 
-userRoutes.post('/register', createUserController.handle);
+userRoutes.post('/', createUserController.handle);
 userRoutes.post('/verify', verifyUserController.handle);
 userRoutes.post('/login', loginUserController.handle);
 userRoutes.get('/', readUserController.handle);
-userRoutes.put('/', updateUserController.handle);
+userRoutes.patch('/', updateUserController.handle);

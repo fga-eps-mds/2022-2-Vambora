@@ -39,6 +39,20 @@ class UsersRepositoryInMemory implements IUsersRepository {
     this.usersRepository.forEach((user) => user.id === user_id && (user.isVerified = true))
     return;
   }
+
+  async updateUser(user_id: string, email: string, name: string, enrollment: string): Promise<User | null> {
+    const user = this.usersRepository.find((user) => {
+      if (user.id === user_id) {
+        user.name = name
+        user.email = email
+        user.enrollment = enrollment
+      }
+
+      return user
+    })
+
+    return user || null
+  }
 }
 
 export { UsersRepositoryInMemory }
