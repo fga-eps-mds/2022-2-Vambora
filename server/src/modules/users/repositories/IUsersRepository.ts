@@ -8,4 +8,5 @@ export interface IUsersRepository {
   getVerificationCode(user_id: string): Promise<number | null>;
   verifyUser(user_id: string): Promise<void>;
   updateUser(user_id: string, email: string, name: string, enrollment: string): Promise<User | null>;
+  deleteUser(user_id: string): Promise<void>;
 }
