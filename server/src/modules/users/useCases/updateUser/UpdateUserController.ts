@@ -1,7 +1,6 @@
-import exp from "constants";
 import { Request, Response } from "express";
 import { container } from "tsyringe";
-import { AppError } from "../../../../shared/errors/AppError";
+import { AppError } from "@shared/errors/AppError";
 import { UpdateUserUseCase } from "./UpdateUserUseCase";
 
 

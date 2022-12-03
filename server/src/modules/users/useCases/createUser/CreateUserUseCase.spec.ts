@@ -1,8 +1,8 @@
 import 'reflect-metadata'
 import { beforeEach, describe, it, expect } from 'vitest'
-import { IMailAdapter } from '../../../../shared/adapters/mail-adapter'
-import { UsersRepositoryInMemory } from '../../repositories/in-memory/UsersRepositoryInMemory'
-import { IUsersRepository } from '../../repositories/IUsersRepository'
+import { UsersRepositoryInMemory } from '@modules/users/repositories/in-memory/UsersRepositoryInMemory'
+import { IUsersRepository } from '@modules/users/repositories/IUsersRepository'
+import { IMailAdapter } from '@shared/adapters/mail-adapter'
 import { CreateUserUseCase } from './CreateUserUseCase'
 
 let usersRepositoryInMemory: IUsersRepository

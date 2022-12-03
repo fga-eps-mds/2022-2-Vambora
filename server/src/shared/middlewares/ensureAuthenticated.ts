@@ -1,6 +1,6 @@
+import { AppError } from "@shared/errors/AppError";
 import { NextFunction, Request, Response } from "express";
 import * as jwt from 'jsonwebtoken'
-import { AppError } from "../errors/AppError";
 
 export default function ensureAuthenticated(
   req: Request,

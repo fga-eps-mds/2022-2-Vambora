@@ -4,8 +4,8 @@ import 'express-async-errors'
 import express, { NextFunction, Request, Response } from 'express'
 import cors from 'cors'
 import { router } from "./routes"
-import { AppError } from "../../errors/AppError"
-import "../../../shared/container"
+import { AppError } from "@shared/errors/AppError"
+import "@shared/container"
 
 
 const app = express()
