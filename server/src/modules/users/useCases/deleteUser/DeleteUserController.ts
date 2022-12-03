@@ -12,7 +12,7 @@ class DeleteUserController {
       user_id as string
     )
 
-    return res.status(201).send()
+    return res.status(200).json({ message: "Successfully deleted user" })
   }
 }
 

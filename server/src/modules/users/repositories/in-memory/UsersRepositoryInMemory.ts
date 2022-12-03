@@ -40,18 +40,23 @@ class UsersRepositoryInMemory implements IUsersRepository {
     return;
   }
 
-  async updateUser(user_id: string, email: string, name: string, enrollment: string): Promise<User | null> {
+  async updateUser(user_id: string, name: string, email: string, password: string, enrollment: string): Promise<User | null> {
     const user = this.usersRepository.find((user) => {
       if (user.id === user_id) {
         user.name = name
         user.email = email
         user.enrollment = enrollment
+        user.password = password
       }
 
       return user
     })
 
     return user || null
+  }
+
+  async deleteUser(user_id: string): Promise<void> {
+    this.usersRepository = this.usersRepository.filter((user) => user.id !== user_id)
   }
 }
 

@@ -4,13 +4,11 @@ import { IMailAdapter } from '../../../../shared/adapters/mail-adapter'
 import { UsersRepositoryInMemory } from '../../repositories/in-memory/UsersRepositoryInMemory'
 import { IUsersRepository } from '../../repositories/IUsersRepository'
 import { CreateUserUseCase } from '../createUser/CreateUserUseCase'
-import { ReadUserUseCase } from '../readUser/ReadUserUseCase'
-import { UpdateUserUseCase } from '../updateUser/UpdateUserUseCase'
+import { DeleteUserUseCase } from './DeleteUserUseCase'
 
 let usersRepositoryInMemory: IUsersRepository
 let createUserUseCase: CreateUserUseCase
-let readUserUseCase: ReadUserUseCase
-let updateUserUseCase: UpdateUserUseCase
+let deleteUserUseCase: DeleteUserUseCase
 
 const mailAdapterMock: IMailAdapter = {
   sendMail: () => Promise.resolve(),
@@ -20,11 +18,10 @@ describe("Create User", () => {
   beforeEach(async () => {
     usersRepositoryInMemory = new UsersRepositoryInMemory()
     createUserUseCase = new CreateUserUseCase(usersRepositoryInMemory, mailAdapterMock)
-    readUserUseCase = new ReadUserUseCase(usersRepositoryInMemory)
-    updateUserUseCase = new UpdateUserUseCase(usersRepositoryInMemory)
+    deleteUserUseCase = new DeleteUserUseCase(usersRepositoryInMemory)
   })
 
-  it("should be able to update an user", async () => {
+  it("should be able to delete an user", async () => {
     const user = await createUserUseCase.execute({
       name: "User Test",
       email: "matricula@aluno.unb.br",
@@ -32,22 +29,14 @@ describe("Create User", () => {
       enrollment: "matricula",
     })
 
-    await updateUserUseCase.execute({
-      user_id: user.id,
-      name: "Updated User Test",
-    })
+    await deleteUserUseCase.execute(user.id)
 
-    const userFound = await readUserUseCase.execute(user.id)
+    const deletedUser = await usersRepositoryInMemory.findUserById(user.id)
 
-    expect(userFound.name).toBe("Updated User Test")
+    expect(deletedUser).toBe(null)
   })
 
-  it("should not be able to update an user that doesn't exist", async () => {
-    await expect(
-      updateUserUseCase.execute({
-        user_id: "invalid user id",
-        name: "Updated User Test",
-      })
-    ).rejects.toThrow()
+  it("should not be able to delete an user that doesn't exists", async () => {
+    await expect(deleteUserUseCase.execute('invalid-user-id')).rejects.toThrowError()
   })
 })
