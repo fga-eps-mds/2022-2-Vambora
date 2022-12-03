@@ -48,6 +48,7 @@ class LoginUserUseCase {
     })
 
     const filteredUserData = {
+      id: user.id,
       email: user.email,
       name: user.name,
       enrollment: user.enrollment,

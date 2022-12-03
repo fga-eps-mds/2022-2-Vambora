@@ -1,7 +1,7 @@
 import { User } from '@prisma/client';
-import { prisma } from '../../../../prisma';
-import { ICreateUserDTO } from '../../dtos/ICreateUserDTO';
-import { IUsersRepository } from '../../repositories/IUsersRepository';
+import { prisma } from '../../../../../prisma';
+import { ICreateUserDTO } from '../../../dtos/ICreateUserDTO';
+import { IUsersRepository } from '../../IUsersRepository';
 
 class PrismaUsersRepository implements IUsersRepository {
   async create(data: ICreateUserDTO): Promise<User> {
@@ -61,7 +61,7 @@ class PrismaUsersRepository implements IUsersRepository {
     });
   }
 
-  async updateUser(user_id: string, email: string, name: string, enrollment: string): Promise<User> {
+  async updateUser(user_id: string, name: string, email: string, password: string, enrollment: string): Promise<User> {
     const user = await prisma.user.update({
       where: {
         id: user_id,
@@ -70,6 +70,7 @@ class PrismaUsersRepository implements IUsersRepository {
         email,
         name,
         enrollment,
+        password
       }
     })
 
@@ -77,11 +78,11 @@ class PrismaUsersRepository implements IUsersRepository {
   }
 
   async deleteUser(user_id: string): Promise<void> {
-      await prisma.user.delete({
-        where: {
-          id: user_id
-        }
-      })
+    await prisma.user.delete({
+      where: {
+        id: user_id
+      }
+    })
   }
 }
 

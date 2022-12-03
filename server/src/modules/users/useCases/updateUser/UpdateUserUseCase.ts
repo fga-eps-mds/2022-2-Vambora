@@ -20,7 +20,7 @@ class UpdateUserUseCase {
     const user = await this.usersRepository.findUserById(user_id)
 
     if (!user) {
-      throw new AppError("Invalid user")
+      throw new AppError("User does not exist!", 404)
     }
 
     const updatedUser = await this.usersRepository.updateUser(user_id, name, email, password, enrollment)

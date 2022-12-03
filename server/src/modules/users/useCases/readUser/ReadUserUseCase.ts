@@ -8,7 +8,7 @@ class ReadUserUseCase {
   constructor(
     @inject('UsersRepository')
     private usersRepository: IUsersRepository
-  ) {}
+  ) { }
   async execute(user_id: string): Promise<User> {
     const user = await this.usersRepository.findUserById(user_id);
 
