@@ -29,18 +29,21 @@ No back-end, optamos por usar o Node, que é um runtime utilizado para rodar có
   sudo npm i -g yarn
 ```
 4. Clone o repositório
-5. Para executar o server:
+
+5. Peça o arquivo .env para algum integrante do grupo e coloque na raíz do backend (pasta server).
+
+6. Para executar o server:
 ```
   docker compose up
 ```
-6. Para executar o mobile:
+7. Para executar o mobile:
 ```
   cd mobile
   yarn
   yarn start
 ```
-7. Scanneie o QR Code no aplicativo do Expo.
-8. Caso queira rodar no emulador, basta ter o Android Studio instalado ou o XCode, e rodar: 
+8. Scanneie o QR Code no aplicativo do Expo.
+9. Caso queira rodar no emulador, basta ter o Android Studio instalado ou o XCode, e rodar: 
 ```
   yarn android
 ```
