@@ -3,4 +3,5 @@ export interface ICreateUserDTO {
   name: string,
   enrollment: string,
   password: string,
+  verificationCode: number
 }
