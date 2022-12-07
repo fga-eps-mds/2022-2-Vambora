@@ -1,8 +1,8 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-// import Welcome from "../pages/Welcome";
-import SingIn from "../pages/SingIn";
+import Welcome from "../pages/Welcome";
+import SignIn from "../pages/SignIn";
 // import Loading from "../pages/Loading";
 
 const Stack = createNativeStackNavigator();
@@ -10,15 +10,15 @@ const Stack = createNativeStackNavigator();
 export default function Routes() {
   return (
     <Stack.Navigator>
-      {/* <Stack.Screen
+      <Stack.Screen
         name="Welcome"
         component={Welcome}
         options={{ headerShown: false }}
       />
-    */}
+
       <Stack.Screen
-        name="SingIn"
-        component={SingIn}
+        name="SignIn"
+        component={SignIn}
         options={{ headerShown: false }}
       />
       {/* <Stack.Screen

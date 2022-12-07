@@ -20,5 +20,5 @@ export const LogoContainer = styled.View`
 
 export const ButtonContainer = styled.View`
   margin-top: 50px;
-  width: 330;
+  width: 330px;
 `;
