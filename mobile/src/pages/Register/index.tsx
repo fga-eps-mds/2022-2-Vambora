@@ -8,7 +8,6 @@ import {
   NoRegisterText,
   LinkText,
 } from "./styles";
-import { Linking } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 export default function Register() {

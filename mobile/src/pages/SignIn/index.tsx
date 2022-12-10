@@ -1,5 +1,4 @@
 import React from "react";
-import { Alert, Linking } from "react-native";
 import { Button } from "../../components/Button";
 import { TextGlobal } from "../../components/Global";
 import {
