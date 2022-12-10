@@ -1,0 +1,98 @@
+/* using roboto */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+
+}
+
+header {
+  display: flex;
+  width: 100%;
+  min-height: 60px;
+  background-image: radial-gradient(circle, #f7f3fc 26%, #ebe0f7 100%);
+  /* box-shadow: 0px 0px 5px #2f0b52b4; */
+  align-items: center;
+  justify-content: space-between;
+  padding: 0rem 8.5rem 0rem 8.5rem;
+  font-size: 20px;
+
+}
+
+.menu {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.menu li a {
+  display: block;
+  font-weight: 400;
+  color: #60269E;
+  text-decoration: none;
+}
+
+.leftSideLogoHeader {
+  text-align: left;
+
+  font-size: 25px;
+  font-weight: 700;
+  color: #60269E;
+  /* align-items: left; */
+  width: 50%;
+  float: left;
+
+}
+
+
+.frame1 {
+  /* gradient from ice white to purple */
+  background-image: radial-gradient(circle, #ffffff 26%, #ebe0f7 100%);
+  /* background-image: linear-gradient(140deg, #edebf7 0 50%, #ebe0f7); */
+
+  width: 100%;
+  height: 62rem;
+  /* margin-top: 2px; */
+  display: flex;
+}
+
+.centerf1 {
+  display: flex;
+  align-items: center;
+
+  max-width: 80%;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  /* justify-content: space-between; */
+}
+
+.people {
+  background-color: #60269E;
+  background-image: linear-gradient(97.54deg, #60269E 1.96%, #03CFFC 36.81%, #B977FF 77.81%, #6508C9 100.36%);
+  background-size: 100%;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
+}
+
+.centerf1 div {
+
+  flex: 1 1 300px;
+}
+
+.centerf1 img {
+  width: 500px;
+  height: 500px;
+
+}
+
+.textf1 h2 {
+  font-size: 68px;
+  font-weight: 900;
+  margin-bottom: 20px;
+}
