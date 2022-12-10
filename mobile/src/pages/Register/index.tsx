@@ -1,5 +1,3 @@
-import React from "react";
-import { Alert, Linking } from "react-native";
 import { Button } from "../../components/Button";
 import { TextGlobal } from "../../components/Global";
 import {
@@ -10,27 +8,33 @@ import {
   NoRegisterText,
   LinkText,
 } from "./styles";
+import { Linking } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
-export default function SingIn() {
+export default function Register() {
   const navigation = useNavigation<any>();
 
-  function handleNavigationToRegister() {
-    navigation.navigate("Register");
+  function HandleNavigationToLogin() {
+    navigation.navigate("SignIn");
   }
+
   return (
     <Container>
-      <TextGlobal weight="700" size={39}>
-        Login
+      <TextGlobal weight="700" size={44}>
+        Registrar-se
       </TextGlobal>
       <Form>
-        <Title>E-mail institucional</Title>
+        <Title>Nome Completo</Title>
         <InputText />
+        <Title>Matricula</Title>
+        <InputText keyboardType="number-pad" />
+        <Title>E-mail institucional</Title>
+        <InputText keyboardType="email-address" />
         <Title>Senha</Title>
         <InputText />
         <NoRegisterText>
-          Não possui conta?{" "}
-          <LinkText onPress={handleNavigationToRegister}>Registre-se</LinkText>
+          Ja Possui Conta?
+          <LinkText onPress={HandleNavigationToLogin}> Fazer Login</LinkText>
         </NoRegisterText>
         <Button onPress={() => alert("Funcionando")}>Entrar</Button>
       </Form>

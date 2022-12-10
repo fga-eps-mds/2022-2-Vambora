@@ -7,14 +7,11 @@ import { TextGlobal } from "../../components/Global";
 import { Button } from "../../components/Button";
 import { useNavigation } from "@react-navigation/native";
 
-
-
 export default function Welcome() {
-
   const navigation = useNavigation<any>();
 
   function handleNavigateToSignIn() {
-    navigation.navigate('SignIn');
+    navigation.navigate("SignIn");
     //alert ('teste');
   }
 
