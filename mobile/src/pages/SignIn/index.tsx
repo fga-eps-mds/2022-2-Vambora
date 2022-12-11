@@ -10,6 +10,7 @@ import {
   LinkText,
 } from "./styles";
 import { useNavigation } from "@react-navigation/native";
+import { useState } from "react";
 
 export default function SingIn() {
   const navigation = useNavigation<any>();
@@ -17,6 +18,10 @@ export default function SingIn() {
   function handleNavigationToRegister() {
     navigation.navigate("Register");
   }
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   return (
     <Container>
       <TextGlobal weight="700" size={39}>
@@ -24,9 +29,9 @@ export default function SingIn() {
       </TextGlobal>
       <Form>
         <Title>E-mail institucional</Title>
-        <InputText />
+        <InputText onChangeText={setEmail} />
         <Title>Senha</Title>
-        <InputText />
+        <InputText secureTextEntry={true} onChangeText={setPassword} />
         <NoRegisterText>
           Não possui conta?{" "}
           <LinkText onPress={handleNavigationToRegister}>Registre-se</LinkText>

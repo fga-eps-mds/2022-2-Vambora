@@ -9,6 +9,7 @@ import {
   LinkText,
 } from "./styles";
 import { useNavigation } from "@react-navigation/native";
+import { useState } from "react";
 
 export default function Register() {
   const navigation = useNavigation<any>();
@@ -17,6 +18,11 @@ export default function Register() {
     navigation.navigate("SignIn");
   }
 
+  const [name, setName] = useState("");
+  const [registration, setRegistration] = useState("");
+  const [registerEmail, setRegisterEmail] = useState("");
+  const [registerPassword, setRegisterPassword] = useState("");
+
   return (
     <Container>
       <TextGlobal weight="700" size={44}>
@@ -24,13 +30,16 @@ export default function Register() {
       </TextGlobal>
       <Form>
         <Title>Nome Completo</Title>
-        <InputText />
+        <InputText onChangeText={setName} />
         <Title>Matricula</Title>
-        <InputText keyboardType="number-pad" />
+        <InputText keyboardType="number-pad" onChangeText={setRegistration} />
         <Title>E-mail institucional</Title>
-        <InputText keyboardType="email-address" />
+        <InputText
+          keyboardType="email-address"
+          onChangeText={setRegisterEmail}
+        />
         <Title>Senha</Title>
-        <InputText />
+        <InputText onChangeText={setRegisterPassword} secureTextEntry={true} />
         <NoRegisterText>
           Ja Possui Conta?
           <LinkText onPress={HandleNavigationToLogin}> Fazer Login</LinkText>
