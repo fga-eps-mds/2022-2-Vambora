@@ -114,6 +114,8 @@
           <p align="center"> Gustavo Kenzo </p>
         </a>
       </td>
+    </tr>
+    <tr>
       <td valign="top">
         <a href="http://github.com/lelamo2002">
           <img align="center" src="http://github.com/lelamo2002.png" height="100" />
