@@ -5,6 +5,10 @@
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"
-    ]
+    ],
+    "splash": {
+      "image": "./src/assets/LogoMidia2.svg",
+      "backgroundColor": "#8257E5"
+    }
   }
 }

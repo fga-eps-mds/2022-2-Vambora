@@ -6,10 +6,7 @@ export const Container = styled.View`
   background : #fafafa;
   align-items: center;
   justify-content: center;
-
 `;
-
-
 
 export const Title = styled.Text`
   margin-left: 5px;

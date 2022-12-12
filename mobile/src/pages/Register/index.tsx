@@ -12,25 +12,20 @@ import {
 } from "./styles";
 import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
-import {
-  KeyboardAvoidingView,
-  Platform,
-  SafeAreaView,
-  ScrollView,
-  View,
-} from "react-native";
+import { Platform, SafeAreaView } from "react-native";
+import { api } from "../../services/api";
 
 export default function Register() {
   const navigation = useNavigation<any>();
 
-  function HandleNavigationToLogin() {
+  function handleNavigationToLogin() {
     navigation.navigate("SignIn");
   }
 
   const [name, setName] = useState("");
   const [enrollment, setEnrollment] = useState("");
   const [email, setEmail] = useState("");
-  const [registerPassword, setRegisterPassword] = useState("");
+  const [password, setPassword] = useState("");
 
   function fillEmail(e: any) {
     setEnrollment(e);
@@ -38,6 +33,23 @@ export default function Register() {
 
     if (e.length === 9) {
       setEmail(e + "@aluno.unb.br");
+    }
+  }
+
+  async function handleRegister() {
+    try {
+      const response = await api.post("/user", {
+        email,
+        name,
+        enrollment,
+        password,
+      });
+
+      if (response.status === 201) {
+        alert("Usuário criado com sucesso!");
+      }
+    } catch (error) {
+      alert("Erro ao criar usuário!");
     }
   }
 
@@ -51,7 +63,7 @@ export default function Register() {
             </TextGlobal>
             <Inputs>
               <Title>Nome Completo</Title>
-              <InputText onChangeText={setName} />
+              <InputText onChangeText={setName} autoComplete="off" />
               <Title>Matrícula</Title>
               <InputText
                 keyboardType="number-pad"
@@ -65,19 +77,16 @@ export default function Register() {
                 autoCorrect={false}
               />
               <Title>Senha</Title>
-              <InputText
-                onChangeText={setRegisterPassword}
-                secureTextEntry={true}
-              />
+              <InputText onChangeText={setPassword} secureTextEntry={true} />
               <NoRegisterText>
                 Já Possui Conta?
-                <LinkText onPress={HandleNavigationToLogin}>
+                <LinkText onPress={handleNavigationToLogin}>
                   {" "}
                   Fazer Login
                 </LinkText>
               </NoRegisterText>
             </Inputs>
-            <Button onPress={() => alert("Funcionando")}>Entrar</Button>
+            <Button onPress={handleRegister}>Entrar</Button>
           </Form>
         </ScrollContainer>
       </SafeAreaView>
