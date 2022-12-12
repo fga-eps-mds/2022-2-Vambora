@@ -12,21 +12,16 @@ import { NavigationContainer } from "@react-navigation/native";
 
 import Routes from "./src/routes";
 
-
-
-
 export default function App() {
-
   const [fontsLoaded] = useFonts({
-    "Quicksand-500":Quicksand_500Medium ,
-    "Quicksand-600":Quicksand_600SemiBold,
-    "Quicksand-700":Quicksand_700Bold,
+    "Quicksand-500": Quicksand_500Medium,
+    "Quicksand-600": Quicksand_600SemiBold,
+    "Quicksand-700": Quicksand_700Bold,
   });
 
-  if(!fontsLoaded){
+  if (!fontsLoaded) {
     return null;
-  }
-  else{
+  } else {
     return (
       <NavigationContainer>
         <StatusBar backgroundColor="#38A69D" barStyle="light-content" />
@@ -35,4 +30,3 @@ export default function App() {
     );
   }
 }
-
