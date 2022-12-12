@@ -29,6 +29,7 @@ export const Title = styled.Text`
   font-weight: 500;
   font-size: 20px;
   font-weight: 400;
+  margin: 0 0 5px 5px;
 `;
 
 export const InputText = styled.TextInput`

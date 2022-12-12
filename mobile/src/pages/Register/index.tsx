@@ -28,9 +28,18 @@ export default function Register() {
   }
 
   const [name, setName] = useState("");
-  const [registration, setRegistration] = useState("");
-  const [registerEmail, setRegisterEmail] = useState("");
+  const [enrollment, setEnrollment] = useState("");
+  const [email, setEmail] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
+
+  function fillEmail(e: any) {
+    setEnrollment(e);
+    setEmail(e);
+
+    if (e.length === 9) {
+      setEmail(e + "@aluno.unb.br");
+    }
+  }
 
   return (
     <Container behavior={Platform.OS === "ios" ? "padding" : "height"}>
@@ -46,12 +55,14 @@ export default function Register() {
               <Title>Matrícula</Title>
               <InputText
                 keyboardType="number-pad"
-                onChangeText={setRegistration}
+                onChangeText={(e) => fillEmail(e)}
               />
               <Title>E-mail institucional</Title>
               <InputText
                 keyboardType="email-address"
-                onChangeText={setRegisterEmail}
+                onChangeText={setEmail}
+                value={email}
+                autoCorrect={false}
               />
               <Title>Senha</Title>
               <InputText
