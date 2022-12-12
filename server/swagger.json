@@ -1,0 +1,58 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "My API",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/user": {
+      "post": {
+        "summary": "Create a user",
+        "description": "Create a new user",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "enrollment": {
+                    "type": "number"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "email",
+                  "name",
+                  "enrollment",
+                  "password"
+                ],
+                "example": {
+                  "email": "111111111@aluno.unb.br",
+                  "name": "John Doe",
+                  "enrollment": 111111111,
+                  "password": "Ab123456"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "User created"
+          },
+          "400": {
+            "description": "If the user already exists or the email is not from the UnB domain or the password is not strong enough or there is a missing fields"
+          }
+        }
+      }
+    }
+  }
+}
