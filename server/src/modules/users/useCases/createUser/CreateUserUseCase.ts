@@ -54,8 +54,12 @@ class CreateUserUseCase {
     await this.mailAdapter.sendMail!({
       subject: "Seja bem-vindo(a) ao Vambora!",
       body: [
-        `<body>`,
-        `<h1>${verificationCode}</h1>`,
+        `<body style="background-color: #8257e6; padding: 50px; color: #ffffff">`,
+        `<div style="text-align: center;">`,
+        `<h1 style="font-size: 24px; font-weight: bold; margin-bottom: 50px;">Olá ${name.split(" ")[0]}, seja bem-vindo(a) ao Vambora!</h1>`,
+        `<h2>Seu código de verificação é:</h2>`,
+        `<h2><strong>${verificationCode}</strong></h2>`,
+        `</div>`,
         `</body>`,
       ].join("\n"),
       user_email: email

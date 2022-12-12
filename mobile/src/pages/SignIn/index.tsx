@@ -12,6 +12,7 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
 import { api } from "../../services/api";
+import { ActivityIndicator } from "react-native";
 
 export default function SingIn() {
   const navigation = useNavigation<any>();
@@ -23,7 +24,13 @@ export default function SingIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const [isLoading, setIsLoading] = useState(false);
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+
   async function handleLogin() {
+    setIsLoading(true);
+    setIsButtonDisabled(true);
+
     try {
       const response = await api.post("/user/login", {
         email,
@@ -36,6 +43,9 @@ export default function SingIn() {
     } catch (error) {
       alert("Erro ao logar!");
     }
+
+    setIsLoading(false);
+    setIsButtonDisabled(false);
   }
 
   return (
@@ -52,7 +62,13 @@ export default function SingIn() {
           Não possui conta?{" "}
           <LinkText onPress={handleNavigationToRegister}>Registre-se</LinkText>
         </NoRegisterText>
-        <Button onPress={handleLogin}>Entrar</Button>
+        <Button disabled={isButtonDisabled} onPress={handleLogin}>
+          {isLoading ? (
+            <ActivityIndicator size="small" color="#fff" />
+          ) : (
+            "Cadastrar"
+          )}
+        </Button>
       </Form>
     </Container>
   );

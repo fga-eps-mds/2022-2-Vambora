@@ -9,10 +9,12 @@ import {
   LinkText,
   ScrollContainer,
   Inputs,
+  LoadingContainer,
 } from "./styles";
 import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
-import { Platform, SafeAreaView } from "react-native";
+import { ActivityIndicator, Platform, SafeAreaView } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { api } from "../../services/api";
 
 export default function Register() {
@@ -27,6 +29,9 @@ export default function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const [isLoading, setIsLoading] = useState(false);
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+
   function fillEmail(e: any) {
     setEnrollment(e);
     setEmail(e);
@@ -37,6 +42,9 @@ export default function Register() {
   }
 
   async function handleRegister() {
+    setIsLoading(true);
+    setIsButtonDisabled(true);
+
     try {
       const response = await api.post("/user", {
         email,
@@ -46,11 +54,14 @@ export default function Register() {
       });
 
       if (response.status === 201) {
-        alert("Usuário criado com sucesso!");
+        await AsyncStorage.setItem("@vambora:id", response.data.id);
       }
     } catch (error) {
       alert("Erro ao criar usuário!");
     }
+
+    setIsLoading(false);
+    setIsButtonDisabled(false);
   }
 
   return (
@@ -63,7 +74,11 @@ export default function Register() {
             </TextGlobal>
             <Inputs>
               <Title>Nome Completo</Title>
-              <InputText onChangeText={setName} autoComplete="off" />
+              <InputText
+                onChangeText={setName}
+                autoComplete="off"
+                autoCorrect={false}
+              />
               <Title>Matrícula</Title>
               <InputText
                 keyboardType="number-pad"
@@ -86,7 +101,13 @@ export default function Register() {
                 </LinkText>
               </NoRegisterText>
             </Inputs>
-            <Button onPress={handleRegister}>Entrar</Button>
+            <Button disabled={isButtonDisabled} onPress={handleRegister}>
+              {isLoading ? (
+                <ActivityIndicator size="small" color="#fff" />
+              ) : (
+                "Cadastrar"
+              )}
+            </Button>
           </Form>
         </ScrollContainer>
       </SafeAreaView>

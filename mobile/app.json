@@ -7,7 +7,7 @@
       "**/*"
     ],
     "splash": {
-      "image": "./src/assets/LogoMidia2.svg",
+      "image": "./src/assets/logoLight.png",
       "backgroundColor": "#8257E5"
     }
   }

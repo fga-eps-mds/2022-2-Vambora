@@ -51,3 +51,11 @@ export const LinkText = styled.Text`
   font-weight: 600;
   font-size: 16px
 `;
+
+export const LoadingContainer = styled.View`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  position: absolute;
+`;

@@ -6,7 +6,8 @@ interface ContainerProps {
 }
 
 export const Container = styled.TouchableOpacity<ContainerProps>`
-  background: ${(props) => props.disabled ? "#999" : props.backgroundColor};
+  background-color: ${(props) => props.backgroundColor || "#8257e5"};
+  opacity: ${(props) => props.disabled ? 0.5 : 1};
   border-radius: 48px;
   padding: 16px 24px;
   align-items: center;
