@@ -8,6 +8,9 @@
     "/user": {
       "post": {
         "summary": "Create a user",
+        "tags": [
+          "User"
+        ],
         "description": "Create a new user",
         "requestBody": {
           "content": {
@@ -22,7 +25,7 @@
                     "type": "string"
                   },
                   "enrollment": {
-                    "type": "number"
+                    "type": "string"
                   },
                   "password": {
                     "type": "string"
@@ -37,7 +40,7 @@
                 "example": {
                   "email": "111111111@aluno.unb.br",
                   "name": "John Doe",
-                  "enrollment": 111111111,
+                  "enrollment": "111111111",
                   "password": "Ab123456"
                 }
               }
@@ -50,6 +53,109 @@
           },
           "400": {
             "description": "If the user already exists or the email is not from the UnB domain or the password is not strong enough or there is a missing fields"
+          }
+        }
+      },
+      "get": {
+        "summary": "Read a user test",
+        "tags": [
+          "User"
+        ],
+        "description": "Read a user by id",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "email": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "enrollment": {
+                      "type": "string"
+                    },
+                    "password": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update a user",
+        "tags": [
+          "User"
+        ],
+        "description": "Update the user's name, email, enrollment or password",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "enrollment": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "email": "111111222@aluno.unb.br",
+                  "name": "John Doe",
+                  "enrollment": "111111222",
+                  "password": "Ab123@456"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "User updated"
+          },
+          "400": {
+            "description": "If the user already exists or the email is not from the UnB domain or the password is not strong enough or there is a missing fields"
+          },
+          "404": {
+            "description": "User not found"
           }
         }
       }
