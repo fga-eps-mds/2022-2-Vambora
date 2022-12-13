@@ -23,8 +23,8 @@ export const Form = styled.View`
 export const InputText = styled.TextInput`
   padding: 10px;
   border: 1px solid #ABABAB;
-  border-radius: 22px;
-  background: #E6E6E6;
+  border-radius: 5px;
+  background: #eee;
   margin-bottom: 20px;
 `;
 

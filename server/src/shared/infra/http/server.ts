@@ -35,5 +35,5 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
 const PORT = process.env.PORT || 3333
 
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}!\nlink para o swagger: http://localhost:${PORT}/api-docs/`)
+  console.log(`Server is running on port ${PORT}! \n Swagger is running on: http://localhost:${PORT}/api-docs/`)
 })

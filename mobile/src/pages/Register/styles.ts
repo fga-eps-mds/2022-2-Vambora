@@ -35,8 +35,8 @@ export const Title = styled.Text`
 export const InputText = styled.TextInput`
   padding: 10px;
   border: 1px solid #ABABAB;
-  border-radius: 22px;
-  background: #E6E6E6;
+  border-radius: 8px;
+  background: #eee;
   margin-bottom: 20px;
 `;
 

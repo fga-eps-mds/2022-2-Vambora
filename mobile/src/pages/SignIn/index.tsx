@@ -13,21 +13,33 @@ import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
 import { api } from "../../services/api";
 import { ActivityIndicator } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { Modal } from "../../components/Modal";
 
 export default function SingIn() {
-  const navigation = useNavigation<any>();
-
-  function handleNavigationToRegister() {
-    navigation.navigate("Register");
-  }
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const [isLoading, setIsLoading] = useState(false);
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
+  const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
+  const [errorTitle, setErrorTitle] = useState("Erro");
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const navigation = useNavigation<any>();
+
+  function handleNavigationToRegister() {
+    navigation.navigate("Register");
+  }
+
   async function handleLogin() {
+    if (!email || !password) {
+      setErrorMessage("Preencha todos os campos!");
+      setIsErrorModalOpen(true);
+      return;
+    }
+
     setIsLoading(true);
     setIsButtonDisabled(true);
 
@@ -37,11 +49,22 @@ export default function SingIn() {
         password,
       });
 
-      if (response.status === 200) {
-        alert("Logado com sucesso!");
+      await AsyncStorage.setItem("@vambora:user_id", response.data.user.id);
+
+      if (!response.data.user.isVerified) {
+        setErrorMessage("Verifique sua conta para continuar!");
+        setIsErrorModalOpen(true);
+        navigation.navigate("VerificationCode");
       }
     } catch (error) {
-      alert("Erro ao logar!");
+      if (error.response.data.message === "Verify your account to continue") {
+        setErrorMessage("Verifique sua conta para continuar!");
+        setIsErrorModalOpen(true);
+        navigation.navigate("VerificationCode");
+      } else if (error.response.data.message === "Invalid credentials") {
+        setErrorMessage("E-mail ou senha inválidos!");
+        setIsErrorModalOpen(true);
+      }
     }
 
     setIsLoading(false);
@@ -50,6 +73,13 @@ export default function SingIn() {
 
   return (
     <Container>
+      {isErrorModalOpen && (
+        <Modal
+          setIsErrorModalOpen={setIsErrorModalOpen}
+          title={errorTitle}
+          description={errorMessage}
+        />
+      )}
       <TextGlobal weight="700" size={39}>
         Login
       </TextGlobal>
@@ -66,7 +96,7 @@ export default function SingIn() {
           {isLoading ? (
             <ActivityIndicator size="small" color="#fff" />
           ) : (
-            "Cadastrar"
+            "Entrar"
           )}
         </Button>
       </Form>

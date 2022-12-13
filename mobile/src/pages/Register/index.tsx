@@ -16,6 +16,7 @@ import { useState } from "react";
 import { ActivityIndicator, Platform, SafeAreaView } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { api } from "../../services/api";
+import { Modal } from "../../components/Modal";
 
 export default function Register() {
   const navigation = useNavigation<any>();
@@ -32,16 +33,26 @@ export default function Register() {
   const [isLoading, setIsLoading] = useState(false);
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
+  const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
+  const [errorTitle, setErrorTitle] = useState("Erro");
+  const [errorMessage, setErrorMessage] = useState("");
+
   function fillEmail(e: any) {
     setEnrollment(e);
     setEmail(e);
 
-    if (e.length === 9) {
+    if (e.length >= 9) {
       setEmail(e + "@aluno.unb.br");
     }
   }
 
   async function handleRegister() {
+    if (!name || !enrollment || !email || !password) {
+      setErrorMessage("Preencha todos os campos!");
+      setIsErrorModalOpen(true);
+      return;
+    }
+
     setIsLoading(true);
     setIsButtonDisabled(true);
 
@@ -54,10 +65,17 @@ export default function Register() {
       });
 
       if (response.status === 201) {
-        await AsyncStorage.setItem("@vambora:id", response.data.id);
+        await AsyncStorage.setItem("@vambora:user_id", response.data.id);
+        navigation.navigate("VerificationCode");
       }
     } catch (error) {
-      alert("Erro ao criar usuário!");
+      if (error.response.data.message === "User already exists!") {
+        setErrorMessage("Um usuário já existe com esse e-mail!");
+        setIsErrorModalOpen(true);
+      } else {
+        setErrorMessage("Erro ao criar usuário!");
+        setIsErrorModalOpen(true);
+      }
     }
 
     setIsLoading(false);
@@ -66,6 +84,13 @@ export default function Register() {
 
   return (
     <Container behavior={Platform.OS === "ios" ? "padding" : "height"}>
+      {isErrorModalOpen && (
+        <Modal
+          setIsErrorModalOpen={setIsErrorModalOpen}
+          title={errorTitle}
+          description={errorMessage}
+        />
+      )}
       <SafeAreaView>
         <ScrollContainer>
           <Form>

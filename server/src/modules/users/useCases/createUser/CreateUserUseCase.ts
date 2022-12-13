@@ -39,17 +39,9 @@ class CreateUserUseCase {
       throw new AppError("User already exists!")
     }
 
-    const verificationCode = Math.floor(Math.random() * 1000000)
+    const verificationCode = Math.floor(Math.random() * 1000000).toString().padStart(6, "0")
 
     const hashedPassword = await brcypt.hash(password, 10)
-
-    const user = await this.usersRepository.create({
-      email,
-      name,
-      enrollment,
-      password: hashedPassword,
-      verificationCode
-    })
 
     await this.mailAdapter.sendMail!({
       subject: "Seja bem-vindo(a) ao Vambora!",
@@ -63,6 +55,14 @@ class CreateUserUseCase {
         `</body>`,
       ].join("\n"),
       user_email: email
+    })
+
+    const user = await this.usersRepository.create({
+      email,
+      name,
+      enrollment,
+      password: hashedPassword,
+      verificationCode: parseInt(verificationCode)
     })
 
     return user
