@@ -14,6 +14,7 @@ header {
   display: flex;
   width: 100%;
   min-height: 60px;
+  min-width: 100%;
   background-image: radial-gradient(circle, #f7f3fc 26%, #ebe0f7 100%);
   /* box-shadow: 0px 0px 5px #2f0b52b4; */
   align-items: center;
@@ -56,18 +57,7 @@ header {
 
   width: 100%;
   height: 62rem;
-  /* margin-top: 2px; */
   display: flex;
-}
-
-.centerf1 {
-  display: flex;
-  align-items: center;
-
-  max-width: 80%;
-  margin: 0 auto;
-  flex-wrap: wrap;
-  /* justify-content: space-between; */
 }
 
 .people {
@@ -80,10 +70,36 @@ header {
   -moz-text-fill-color: transparent;
 }
 
-.centerf1 div {
 
-  flex: 1 1 300px;
+
+
+
+.centerf1 {
+  display: flex;
+  align-items: center;
+  max-width: 80%;
+  margin: 0 auto;
+  flex-wrap: wrap;
 }
+
+
+.centerf1 div {
+  flex: 1 1 300px;
+  align-items: center;
+  padding: 0 1rem;
+}
+
+.imagef1 {
+  margin: 0 auto;
+  display: flex;
+  flex: 40%;
+  justify-content: center;
+}
+.textf1 {
+    align-items: center ;
+    margin: 0 auto ;
+    flex: 40%;
+} 
 
 .centerf1 img {
   width: 500px;
@@ -95,4 +111,6 @@ header {
   font-size: 68px;
   font-weight: 900;
   margin-bottom: 20px;
+  /* text-align: center; */
+
 }
