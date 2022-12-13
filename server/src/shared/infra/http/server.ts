@@ -1,10 +1,12 @@
 import "reflect-metadata"
 import 'express-async-errors'
+import swaggerUi from "swagger-ui-express";
 
 import express, { NextFunction, Request, Response } from 'express'
 import cors from 'cors'
 import { router } from "./routes"
 import { AppError } from "@shared/errors/AppError"
+import swaggerFile from "../../../../swagger.json"
 import "@shared/container"
 
 
@@ -14,6 +16,8 @@ app.use(express.json())
 app.use(cors())
 
 app.use(router)
+
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   if (err instanceof AppError) {
@@ -31,5 +35,5 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
 const PORT = process.env.PORT || 3333
 
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}!`)
+  console.log(`Server is running on port ${PORT}!\nlink para o swagger: http://localhost:${PORT}/api-docs/`)
 })
