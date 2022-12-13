@@ -1,10 +1,11 @@
+import { useState } from "react";
 import { ViewProps } from "react-native";
 import { TextGlobal } from "../Global";
 import { Container } from "./styles";
 
-interface ButtonProps extends ViewProps{
+interface ButtonProps extends ViewProps {
   children: string;
-  onPress : () => void |  string;
+  onPress: () => void | string;
 }
 
 export function Button({ children, onPress }: ButtonProps) {
