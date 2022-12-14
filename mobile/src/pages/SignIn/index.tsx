@@ -49,13 +49,23 @@ export default function SingIn() {
         password,
       });
 
-      await AsyncStorage.setItem("@vambora:user_id", response.data.user.id);
+      const user = {
+        id: response.data.user.id,
+        email: response.data.user.email,
+      };
+
+      await AsyncStorage.setItem("@vambora:user", JSON.stringify(user));
 
       if (!response.data.user.isVerified) {
         setErrorMessage("Verifique sua conta para continuar!");
         setIsErrorModalOpen(true);
         navigation.navigate("VerificationCode");
+        return;
       }
+
+      alert(
+        "Login realizado com sucesso! Esperando a página Home ser construída :)"
+      );
     } catch (error) {
       if (error.response.data.message === "Verify your account to continue") {
         setErrorMessage("Verifique sua conta para continuar!");

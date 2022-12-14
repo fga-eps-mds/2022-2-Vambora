@@ -53,6 +53,14 @@ export default function Register() {
       return;
     }
 
+    const domain = email.split("@")[1];
+
+    if (domain !== "aluno.unb.br" && domain !== "unb.br") {
+      setErrorMessage("E-mail inválido!");
+      setIsErrorModalOpen(true);
+      return;
+    }
+
     setIsLoading(true);
     setIsButtonDisabled(true);
 
@@ -65,7 +73,13 @@ export default function Register() {
       });
 
       if (response.status === 201) {
-        await AsyncStorage.setItem("@vambora:user_id", response.data.id);
+        const user = {
+          id: response.data.id,
+          email,
+        };
+
+        await AsyncStorage.setItem("@vambora:user", JSON.stringify(user));
+
         navigation.navigate("VerificationCode");
       }
     } catch (error) {

@@ -24,3 +24,9 @@ export const Input = styled.TextInput`
   border: 1px solid #ddd;
   text-align: center;
 `;
+
+export const Message = styled.Text`
+  font-size: 18px;
+  color: #333;
+  margin: 20px 0;
+`;
