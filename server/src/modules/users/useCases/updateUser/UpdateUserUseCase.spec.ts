@@ -5,7 +5,7 @@ import { ReadUserUseCase } from '../readUser/ReadUserUseCase'
 import { UsersRepositoryInMemory } from '@modules/users/repositories/in-memory/UsersRepositoryInMemory'
 import { IUsersRepository } from '@modules/users/repositories/IUsersRepository'
 import { IMailAdapter } from '@shared/adapters/mail-adapter'
-import { UpdateUserUseCase } from '../updateUser/UpdateUserUseCase'
+import { UpdateUserUseCase } from './UpdateUserUseCase'
 
 let usersRepositoryInMemory: IUsersRepository
 let createUserUseCase: CreateUserUseCase

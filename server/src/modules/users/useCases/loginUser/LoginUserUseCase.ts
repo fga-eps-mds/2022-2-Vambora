@@ -32,9 +32,10 @@ class LoginUserUseCase {
       throw new AppError("Invalid credentials")
     }
 
-    if (!user.isVerified) {
-      throw new AppError("Verify your account to continue")
-    }
+    // Talvez seja melhor tratar isso no front
+    // if (!user.isVerified) {
+    //   throw new AppError("Verify your account to continue")
+    // }
 
     const passwordMatches = await bcrypt.compare(password, user.password)
 

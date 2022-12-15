@@ -24,7 +24,13 @@ export default function Welcome() {
         <Logo />
       </LogoContainer>
       <ButtonContainer>
-        <Button onPress={handleNavigateToSignIn}>Entrar</Button>
+        <Button
+          backgroundColor="#fff"
+          color="#8257e5"
+          onPress={handleNavigateToSignIn}
+        >
+          Entrar
+        </Button>
       </ButtonContainer>
     </Container>
   );

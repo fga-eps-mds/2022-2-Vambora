@@ -9,40 +9,109 @@ import {
   LinkText,
   ScrollContainer,
   Inputs,
+  LoadingContainer,
 } from "./styles";
 import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
-import {
-  KeyboardAvoidingView,
-  Platform,
-  SafeAreaView,
-  ScrollView,
-  View,
-} from "react-native";
+import { ActivityIndicator, Platform, SafeAreaView } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { api } from "../../services/api";
+import { Modal } from "../../components/Modal";
 
 export default function Register() {
   const navigation = useNavigation<any>();
 
-  function HandleNavigationToLogin() {
+  function handleNavigationToLogin() {
     navigation.navigate("SignIn");
   }
 
   const [name, setName] = useState("");
   const [enrollment, setEnrollment] = useState("");
   const [email, setEmail] = useState("");
-  const [registerPassword, setRegisterPassword] = useState("");
+  const [password, setPassword] = useState("");
+
+  const [isLoading, setIsLoading] = useState(false);
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+
+  const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
+  const [errorTitle, setErrorTitle] = useState("Erro");
+  const [errorMessage, setErrorMessage] = useState("");
 
   function fillEmail(e: any) {
     setEnrollment(e);
     setEmail(e);
 
-    if (e.length === 9) {
+    if (e.length >= 9) {
       setEmail(e + "@aluno.unb.br");
     }
   }
 
+  async function handleRegister() {
+    if (!name || !enrollment || !email || !password) {
+      setErrorMessage("Preencha todos os campos!");
+      setIsErrorModalOpen(true);
+      return;
+    }
+
+    const domain = email.split("@")[1];
+
+    if (domain !== "aluno.unb.br" && domain !== "unb.br") {
+      setErrorMessage("E-mail inválido!");
+      setIsErrorModalOpen(true);
+      return;
+    }
+
+    setIsLoading(true);
+    setIsButtonDisabled(true);
+
+    try {
+      const response = await api.post("/user", {
+        email,
+        name,
+        enrollment,
+        password,
+      });
+
+      if (response.status === 201) {
+        const user = {
+          id: response.data.id,
+          email,
+        };
+
+        await AsyncStorage.setItem("@vambora:user", JSON.stringify(user));
+
+        navigation.navigate("VerificationCode");
+      }
+    } catch (error) {
+      if (error.response === undefined) {
+        setErrorMessage(
+          "Houve um erro no servidor, tente novamente mais tarde."
+        );
+        setIsErrorModalOpen(true);
+      } else {
+        if (error.response.data.message === "User already exists!") {
+          setErrorMessage("Um usuário já existe com esse e-mail!");
+          setIsErrorModalOpen(true);
+        } else {
+          setErrorMessage("Erro ao criar usuário!");
+          setIsErrorModalOpen(true);
+        }
+      }
+    }
+
+    setIsLoading(false);
+    setIsButtonDisabled(false);
+  }
+
   return (
     <Container behavior={Platform.OS === "ios" ? "padding" : "height"}>
+      {isErrorModalOpen && (
+        <Modal
+          setIsErrorModalOpen={setIsErrorModalOpen}
+          title={errorTitle}
+          description={errorMessage}
+        />
+      )}
       <SafeAreaView>
         <ScrollContainer>
           <Form>
@@ -51,7 +120,11 @@ export default function Register() {
             </TextGlobal>
             <Inputs>
               <Title>Nome Completo</Title>
-              <InputText onChangeText={setName} />
+              <InputText
+                onChangeText={setName}
+                autoComplete="off"
+                autoCorrect={false}
+              />
               <Title>Matrícula</Title>
               <InputText
                 keyboardType="number-pad"
@@ -65,19 +138,22 @@ export default function Register() {
                 autoCorrect={false}
               />
               <Title>Senha</Title>
-              <InputText
-                onChangeText={setRegisterPassword}
-                secureTextEntry={true}
-              />
+              <InputText onChangeText={setPassword} secureTextEntry={true} />
               <NoRegisterText>
                 Já Possui Conta?
-                <LinkText onPress={HandleNavigationToLogin}>
+                <LinkText onPress={handleNavigationToLogin}>
                   {" "}
                   Fazer Login
                 </LinkText>
               </NoRegisterText>
             </Inputs>
-            <Button onPress={() => alert("Funcionando")}>Entrar</Button>
+            <Button disabled={isButtonDisabled} onPress={handleRegister}>
+              {isLoading ? (
+                <ActivityIndicator size="small" color="#fff" />
+              ) : (
+                "Cadastrar"
+              )}
+            </Button>
           </Form>
         </ScrollContainer>
       </SafeAreaView>

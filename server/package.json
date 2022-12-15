@@ -31,13 +31,13 @@
     "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-react-hooks": "^4.3.0",
     "prettier": "^2.7.1",
-    "prisma": "^4.6.1",
+    "prisma": "^4.7.1",
     "tsx": "^3.12.1",
     "typescript": "*",
     "vitest": "^0.25.1"
   },
   "dependencies": {
-    "@prisma/client": "^4.6.1",
+    "@prisma/client": "^4.7.1",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",

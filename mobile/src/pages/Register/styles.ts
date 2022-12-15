@@ -35,8 +35,8 @@ export const Title = styled.Text`
 export const InputText = styled.TextInput`
   padding: 10px;
   border: 1px solid #ABABAB;
-  border-radius: 22px;
-  background: #E6E6E6;
+  border-radius: 8px;
+  background: #eee;
   margin-bottom: 20px;
 `;
 
@@ -50,4 +50,12 @@ export const LinkText = styled.Text`
   color : #8257E5;
   font-weight: 600;
   font-size: 16px
+`;
+
+export const LoadingContainer = styled.View`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  position: absolute;
 `;

@@ -1,3 +1,4 @@
+import { AppError } from "@shared/errors/AppError";
 import nodemailer from "nodemailer";
 import { IMailAdapter, SendMailData } from "../mail-adapter";
 
@@ -19,11 +20,15 @@ const transport = nodemailer.createTransport({
 
 export class NodemailerMailAdapter implements IMailAdapter {
   async sendMail({ subject, body, user_email }: SendMailData) {
-    await transport.sendMail({
-      from: "Equipe Vambora <vamboramds@gmail.com>",
-      to: user_email,
-      subject: subject,
-      html: body,
-    });
+    try {
+      await transport.sendMail({
+        from: "Equipe Vambora <vamboramds@gmail.com>",
+        to: user_email,
+        subject: subject,
+        html: body,
+      });
+    } catch (error) {
+      throw new AppError("Error sending email")
+    }
   }
 }
