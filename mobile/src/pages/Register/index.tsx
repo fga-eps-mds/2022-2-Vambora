@@ -83,12 +83,19 @@ export default function Register() {
         navigation.navigate("VerificationCode");
       }
     } catch (error) {
-      if (error.response.data.message === "User already exists!") {
-        setErrorMessage("Um usuário já existe com esse e-mail!");
+      if (error.response === undefined) {
+        setErrorMessage(
+          "Houve um erro no servidor, tente novamente mais tarde."
+        );
         setIsErrorModalOpen(true);
       } else {
-        setErrorMessage("Erro ao criar usuário!");
-        setIsErrorModalOpen(true);
+        if (error.response.data.message === "User already exists!") {
+          setErrorMessage("Um usuário já existe com esse e-mail!");
+          setIsErrorModalOpen(true);
+        } else {
+          setErrorMessage("Erro ao criar usuário!");
+          setIsErrorModalOpen(true);
+        }
       }
     }
 
