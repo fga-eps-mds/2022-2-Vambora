@@ -2,7 +2,7 @@
 
 Obrigado por investir seu tempo para contribuir com nosso projeto! Qualquer contribuição sua poderá ser vista neste repositório.
 
-Leia o nosso Código de conduta](./CODE_OF_CONDUCT.md)  para manter nossa comunidade mais unida e respeitável.
+Leia o nosso Código de conduta](https://github.com/fga-eps-mds/2022-2-Vambora/blob/main/CODE_OF_CONDUCT.md)  para manter nossa comunidade mais unida e respeitável.
 
 Neste guia você terá uma visão geral do fluxo de contribuição.
 
