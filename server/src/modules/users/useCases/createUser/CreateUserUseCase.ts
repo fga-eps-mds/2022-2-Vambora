@@ -43,6 +43,8 @@ class CreateUserUseCase {
 
     const hashedPassword = await brcypt.hash(password, 10)
 
+    console.log("Tentando enviar o e-mail");
+
     await this.mailAdapter.sendMail!({
       subject: "Seja bem-vindo(a) ao Vambora!",
       body: [
@@ -56,6 +58,8 @@ class CreateUserUseCase {
       ].join("\n"),
       user_email: email
     })
+
+    console.log("E-mail enviado com sucesso!");
 
     const user = await this.usersRepository.create({
       email,

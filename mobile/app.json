@@ -10,5 +10,12 @@
       "image": "./src/assets/logoLight.png",
       "backgroundColor": "#8257E5"
     }
+  },
+  "ios": {
+    "infoPlist": {
+      "NSLocationAlwaysAndWhenInUseUsageDescription": "Precisamos de sua localização para que possamos te ajudar a encontrar as melhores caronas para você.",
+      "NSLocationAlwaysUsageDescription": "Precisamos de sua localização para que possamos te ajudar a encontrar as melhores caronas para você.",
+      "NSLocationWhenInUseUsageDescription": "Precisamos de sua localização para que possamos te ajudar a encontrar as melhores caronas para você."
+    }
   }
 }
