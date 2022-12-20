@@ -66,7 +66,7 @@ Data: 22/11/2022 a 28/12/2022.
 Quantidade de Tarefas(Issues) criadas: 6.
 |Tarefa|Responsáveis|Planning Poker|Backlog|Sprint de Conclusão|
 |--|--|--|--|--|
-|Adicionar Epic, Feature eBacklog ao README |Júlio e Gustavo Kenzo|3| x |1|
+|Adicionar Epic, Feature e Backlog ao README |Júlio e Gustavo Kenzo|3| x |1|
 |Protótipo de baixa fidelidade|Ana, Júlio, Bruno e Samuel |2, 5, 3 e 5|x|2|
 |Criar o MER e o DER|Samuel e Leonardo|5 e 3|x|1|
 |Criar GitHub Pages|Júlio e Gustavo Kenzo|1 e 3|x|2|
@@ -84,12 +84,12 @@ Quantidade de Tarefas(Issues) criadas: 2.
 |Tarefa|Responsáveis|Planning Poker|Backlog|Sprint de Conclusão|
 |--|--|--|--|--|
 |Front-end: Tela de Registro|Gustavo Henrique|1|US1|3|
-|Protótipo de alta fidelidade|Ana e Júlio|3|x|x|
+|Protótipo de alta fidelidade|Ana e Júlio|3|x|4|
 
 Observações: Nessa Sprint focamos em terminar as tarefas da Sprint 1 e adicionar novas conforme a necessidade e já se preparando para a Release 1.
 
 ## Sprint 3 
-Data da Sprint: 06/12/2022 a 13/12/2022. 
+Data da Sprint: 06/12/2022 a 12/12/2022. 
 Quantidade de Tarefas(Issues) criadas: 5.
 |Tarefa|Responsáveis|Planning Poker|Backlog|Sprint de Conclusão|
 |--|--|--|--|--|
@@ -102,18 +102,15 @@ Observações: Nessa Sprint focamos em integrar o Front-end e o Back-end para en
 
 ## Sprint 4 
 
-## Sprint 7 - Entrega Release 1
+Data da Sprint: 13/12/2022 a 19/12/2022. 
+Quantidade de Tarefas(Issues) criadas: 2.
+|Tarefa|Responsáveis|Planning Poker|Backlog|Sprint de Conclusão|
+|--|--|--|--|--|
+|Show Me The code|Todos|x|FT1|4|
+|Apresentaação da Release 1|Todos|x|FT1|4|
+
+## Entrega Release 1
 - **A Release 1**  A ordem de apresentacao é sorteada, mas os grupos sao podem trocar entre si a ordem. 
-
-- **Peso da R1** - 40% da nota de projeto
-
-- **Tempo de apresentação**: 15 minutos 
-
-- **Artefatos avaliados**: (I) Especificação dos épicos, features e  historias de usuários (critérios de aceitação), (II) Configuração do repositório de acordo com os padrões de comunidade de software livre (Github), (III) Protótipo de alta fidelidade, (IV) Código
-
-- **Praticas ágeis avaliadas**: pareamento, issues, Pull requests, produtividade, participação nos rituais, desempenho
-
-- **Detalhamento da avaliação**: Código-Fonte/entregas (30%), (II) Práticas ageis (25%), (III)  Requisitos Especificados/issues (10%), Protótipo (15%), (IV) Padrões de software livre, (V) critério extra(10%)
 
 ### Entregáveis
 
@@ -121,29 +118,39 @@ Observações: Nessa Sprint focamos em integrar o Front-end e o Back-end para en
 - Documentação de comunidades de software livre: Readme, codigo de conduta, licença, issues, guia de contribuição, templates de issues e pull request. 
 - StoryMap: mapeamento dos épicos, features, histórias de usuários a serem entregues.
 - Práticas ágeis (documentação das issues, pratica de commits, pareamento, arquitetura de software)
-- gitpage: o gitpage é a propaganda do produto de software. Focado no usuário (ex: https://www.tensorflow.org)
-
-
-
-### Entregáveis
+- gitpage: o gitpage é a propaganda do produto de software. Focado no usuário.
 
 ## Sprint 5
+Data da Sprint: 20/12/2022 a 26/12/2022. 
+Quantidade de Tarefas(Issues) criadas: 5.
+|Tarefa|Responsáveis|Planning Poker|Backlog|Sprint de Conclusão|
+|--|--|--|--|--|
+|Spike para estudarmos Google Maps|Todos|x|FT1|4|
 
 ## Sprint 6
+Data da Sprint: 27/12/2022 a 02/12/2022. 
 
 ## Sprint 7
+Data da Sprint: 03/01/2022 a 09/01/2022. 
 
 ## Sprint 8
+Data da Sprint: 10/01/2022 a 16/01/2022. 
 
 ## Sprint 9
+Data da Sprint: 17/01/2022 a 23/01/2022. 
 
 ## Sprint 10
+Data da Sprint: 24/01/2022 a 30/01/2022. 
 
 ## Sprint 11
+Data da Sprint: 31/01/2022 a 06/02/2022. 
 
 ## Sprint 12
+Data da Sprint: 07/02/2022 a 13/02/2022. 
 
 ## Sprint 13 - Release 2
+Data da Sprint: 14/02/2022 a 20/02/2022.
+
 - **A Release 2**  A ordem de apresentacao é sorteada, mas os grupos sao podem trocar entre si a ordem. 
 
 - **Peso da R2** - 60% da nota de projeto
