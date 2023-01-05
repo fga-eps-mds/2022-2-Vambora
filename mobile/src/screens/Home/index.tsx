@@ -3,14 +3,7 @@ import {
   requestForegroundPermissionsAsync,
 } from "expo-location";
 import React, { useEffect, useRef, useState } from "react";
-import {
-  Alert,
-  Platform,
-  SafeAreaView,
-  StatusBar,
-  Text,
-  View,
-} from "react-native";
+import { Alert, Platform, SafeAreaView, StatusBar } from "react-native";
 
 import { Container, HalfContainer } from "./styles";
 import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
@@ -30,12 +23,18 @@ export function Home() {
     longitude: 0,
   });
 
+  const [riderOrigin, setRiderOrigin] = useState({
+    latitude: -15.93067,
+    longitude: -48.11156,
+  });
+
   const [destination, setDestination] = useState({
     latitude: -15.98928,
     longitude: -48.04454,
   });
 
   const [coordinates, setCoordinates] = useState([]);
+  const [riderCoordinates, setRiderCoordinates] = useState([]);
 
   const mapRef = useRef(null);
 
@@ -85,8 +84,8 @@ export function Home() {
     });
   }
 
-  function filterDirections(cs: Coordinate[]) {
-    const directions = [];
+  function filterDriverDirections(cs: Coordinate[]) {
+    const directions: Coordinate[] = [];
 
     cs.forEach((c) => {
       if (directions.length > 0) {
@@ -107,6 +106,30 @@ export function Home() {
     });
 
     setCoordinates(directions);
+  }
+
+  function filterRiderDirections(cs: Coordinate[]) {
+    const directions: Coordinate[] = [];
+
+    cs.forEach((c) => {
+      if (directions.length > 0) {
+        const distance = Math.sqrt(
+          Math.pow(directions[directions.length - 1].latitude - c.latitude, 2) +
+            Math.pow(
+              directions[directions.length - 1].longitude - c.longitude,
+              2
+            )
+        );
+
+        if (distance > 0.015) {
+          directions.push(c);
+        }
+      } else {
+        directions.push(c);
+      }
+    });
+
+    setRiderCoordinates(directions);
   }
 
   return (
@@ -147,14 +170,14 @@ export function Home() {
                 strokeColor="#8257E5"
                 onStart={(params) => {
                   console.log(
-                    `Started routing between "${params.origin}" and "${params.destination}"`
+                    `Started routing for driver between "${params.origin}" and "${params.destination}"`
                   );
                 }}
                 onReady={(result) => {
                   console.log(`Distance: ${result.distance} km`);
                   console.log(`Duration: ${result.duration} min.`);
 
-                  filterDirections(result.coordinates);
+                  filterDriverDirections(result.coordinates);
                 }}
               />
               <Marker
@@ -166,6 +189,30 @@ export function Home() {
                 description="Sua localização atual"
                 identifier="origin"
               />
+              <MapViewDirections
+                origin={{
+                  latitude: riderOrigin.latitude,
+                  longitude: riderOrigin.longitude,
+                }}
+                destination={{
+                  latitude: destination.latitude,
+                  longitude: destination.longitude,
+                }}
+                apikey={GOOGLE_MAPS_API_KEY}
+                strokeWidth={3}
+                strokeColor="#8257E5"
+                onStart={(params) => {
+                  console.log(
+                    `Started routing for rider between "${params.origin}" and "${params.destination}"`
+                  );
+                }}
+                onReady={(result) => {
+                  console.log(`Distance: ${result.distance} km`);
+                  console.log(`Duration: ${result.duration} min.`);
+
+                  filterRiderDirections(result.coordinates);
+                }}
+              />
               <Marker
                 coordinate={{
                   latitude: destination.latitude,
@@ -175,6 +222,9 @@ export function Home() {
                 identifier="destination"
               />
               {coordinates.map((coordinate, index) => (
+                <Marker key={`coordinate_${index}`} coordinate={coordinate} />
+              ))}
+              {riderCoordinates.map((coordinate, index) => (
                 <Marker key={`coordinate_${index}`} coordinate={coordinate} />
               ))}
             </MapView>
@@ -196,6 +246,9 @@ export function Home() {
             query={{
               key: GOOGLE_MAPS_API_KEY,
               language: "pt-br",
+              components: {
+                country: "br",
+              },
             }}
             enablePoweredByContainer={false}
             onPress={(data, details = null) => {
@@ -205,6 +258,10 @@ export function Home() {
               });
             }}
             fetchDetails={true}
+            GooglePlacesSearchQuery={{
+              rankby: "distance",
+            }}
+            enableHighAccuracyLocation={true}
           />
         </HalfContainer>
       </Container>
