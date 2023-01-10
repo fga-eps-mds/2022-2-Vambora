@@ -125,16 +125,27 @@ Data da Sprint: 20/12/2022 a 26/12/2022.
 Quantidade de Tarefas(Issues) criadas: 5.
 |Tarefa|Responsáveis|Planning Poker|Backlog|Sprint de Conclusão|
 |--|--|--|--|--|
-|Spike para estudarmos Google Maps|Todos|x|FT1|4|
+|Spike para estudarmos Google Maps|Todos|x|FT4|5|
+Observações: Essa foi a semana do natal, então fizemos uma Spike Issue, estudamos pequenos detalhes da implementação do Google Maps.
 
 ## Sprint 6
 Data da Sprint: 27/12/2022 a 02/12/2022. 
+|Tarefa|Responsáveis|Planning Poker|Backlog|Sprint de Conclusão|
+|--|--|--|--|--|
+|Spike para estudarmos Google Maps|Todos|x|FT4|6|
+Observações: Essa foi a semana do ano novo, então fizemos uma Spike Issue, estudamos pequenos detalhes da implementação do Google Maps.
 
 ## Sprint 7
-Data da Sprint: 03/01/2022 a 09/01/2022. 
+Data da Sprint: 03/01/2022 a 09/01/2022.
+|Tarefa|Responsáveis|Planning Poker|Backlog|Sprint de Conclusão|
+|--|--|--|--|--|
+|Back-end: CRUD de Rota|Gustavo kenzo, Leonardo, Bruno, Samuel|x|FT4|x|
+|Front-end: Tela Home|Gustavo Henrique, Julio, Ana|x|FT4|x|
+Observações: Essas issues estão previstas para durar mais de uma Sprint.
 
 ## Sprint 8
-Data da Sprint: 10/01/2022 a 16/01/2022. 
+Data da Sprint: 10/01/2022 a 16/01/2022.
+Observações: Nesta Sprint estamos fazendo as issues previstas na Sprint 7 e implementando a Git Pages.
 
 ## Sprint 9
 Data da Sprint: 17/01/2022 a 23/01/2022. 
