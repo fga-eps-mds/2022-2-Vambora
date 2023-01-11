@@ -20,6 +20,10 @@ class CreateUserUseCase {
     private mailAdapter: IMailAdapter
   ) { }
   async execute({ email, name, enrollment, password }: IRequest) {
+    if (!email || !name || !enrollment || !password) {
+      throw new AppError("Missing parameters")
+    }
+
     if (!/^(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/.test(password)) {
       throw new AppError("Password must contain at least 8 characters, one capital letter and one number")
     }

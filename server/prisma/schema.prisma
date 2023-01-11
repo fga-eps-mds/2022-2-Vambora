@@ -25,8 +25,6 @@ model User {
   friends         User[] @relation("friends")
   friendsRelation User[] @relation("friends")
 
-  Route Route[]
-
   Ride   Ride?   @relation(fields: [rideId], references: [id])
   rideId String?
 }
@@ -41,8 +39,7 @@ model Route {
   destination String[]
 
   createdAt DateTime @default(now())
-  createdBy User     @relation(fields: [userId], references: [id])
-  userId    String
+  createdBy String
   Ride      Ride[]
 }
 

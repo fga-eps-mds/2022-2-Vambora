@@ -5,6 +5,7 @@ import { LoginUserController } from '../../../../modules/users/useCases/loginUse
 import { ReadUserController } from '../../../../modules/users/useCases/readUser/ReadUserController';
 import { UpdateUserController } from '../../../../modules/users/useCases/updateUser/UpdateUserController';
 import { VerifyUserController } from '../../../../modules/users/useCases/verifyUser/VerifyUserController';
+import ensureAuthenticated from '@shared/middlewares/ensureAuthenticated';
 
 export const userRoutes = Router();
 
@@ -18,6 +19,6 @@ const deleteUserController = new DeleteUserController();
 userRoutes.post('/', createUserController.handle);
 userRoutes.post('/verify', verifyUserController.handle);
 userRoutes.post('/login', loginUserController.handle);
-userRoutes.get('/', readUserController.handle);
-userRoutes.patch('/', updateUserController.handle);
-userRoutes.delete('/', deleteUserController.handle);
+userRoutes.get('/', ensureAuthenticated, readUserController.handle);
+userRoutes.patch('/', ensureAuthenticated, updateUserController.handle);
+userRoutes.delete('/', ensureAuthenticated, deleteUserController.handle);

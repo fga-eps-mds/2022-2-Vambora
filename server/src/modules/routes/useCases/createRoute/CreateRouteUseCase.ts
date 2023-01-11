@@ -18,8 +18,7 @@ class CreateRouteUseCase {
     @inject("RoutesRepository")
     private routesRepository: IRoutesRepository,
   ) { }
-  async execute({userId, name, description, distance, duration, origin, destination}: IRequest) { 
-    
+  async execute({ userId, name, description, distance, duration, origin, destination }: IRequest) {
     if (!name || !distance || !duration || !origin || !destination) {
       throw new AppError("Missing parameters")
     }
@@ -32,9 +31,10 @@ class CreateRouteUseCase {
       duration,
       origin,
       destination
-  })
-  return route
-}
+    })
+
+    return route
+  }
 }
 
 export { CreateRouteUseCase }

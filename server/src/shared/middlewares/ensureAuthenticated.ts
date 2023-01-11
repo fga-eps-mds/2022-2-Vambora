@@ -28,7 +28,7 @@ export default function ensureAuthenticated(
       }
     }
 
-    req.user.id = decoded.id;
+    req.user = decoded.id;
 
     return next();
   });
