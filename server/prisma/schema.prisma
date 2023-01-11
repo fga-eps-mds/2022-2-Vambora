@@ -24,4 +24,51 @@ model User {
 
   friends         User[] @relation("friends")
   friendsRelation User[] @relation("friends")
+
+  Route Route[]
+
+  Ride   Ride?   @relation(fields: [rideId], references: [id])
+  rideId String?
+}
+
+model Route {
+  id          String   @id @default(uuid())
+  name        String
+  description String
+  distance    Int
+  duration    Int
+  origin      String[]
+  destination String[]
+
+  createdAt DateTime @default(now())
+  createdBy User     @relation(fields: [userId], references: [id])
+  userId    String
+  Ride      Ride[]
+}
+
+model Car {
+  id String @id @default(uuid())
+
+  brand         String
+  model         String
+  year          Int
+  color         String
+  license_plate String
+  Ride          Ride[]
+}
+
+model Ride {
+  id String @id @default(uuid())
+
+  route   Route  @relation(fields: [routeId], references: [id])
+  routeId String
+
+  passangers      User[]
+  driverId        String
+  available_spots Int
+  car             Car    @relation(fields: [carId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  carId     String
 }
