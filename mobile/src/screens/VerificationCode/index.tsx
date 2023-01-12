@@ -90,9 +90,7 @@ export function VerificationCode() {
       if (response.status === 200) {
         setIsLoading(false);
         setIsButtonDisabled(false);
-        alert(
-          "Verificação realizada com sucesso! Esperando a página Home ser construída :)"
-        );
+
         navigation.navigate("SignIn");
       }
     } catch (error) {

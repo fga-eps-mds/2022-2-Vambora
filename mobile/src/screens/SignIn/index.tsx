@@ -52,6 +52,7 @@ export default function SingIn() {
       const user = {
         id: response.data.user.id,
         email: response.data.user.email,
+        token: response.data.token,
       };
 
       await AsyncStorage.setItem("@vambora:user", JSON.stringify(user));
@@ -63,9 +64,7 @@ export default function SingIn() {
         return;
       }
 
-      alert(
-        "Login realizado com sucesso! Esperando a página Home ser construída :)"
-      );
+      navigation.navigate("FirstRoute");
     } catch (error) {
       if (error.response.data.message === "Verify your account to continue") {
         setErrorMessage("Verifique sua conta para continuar!");
@@ -95,7 +94,11 @@ export default function SingIn() {
       </TextGlobal>
       <Form>
         <Title>E-mail institucional</Title>
-        <InputText onChangeText={setEmail} autoComplete="off" />
+        <InputText
+          onChangeText={setEmail}
+          autoComplete="off"
+          autoCorrect={false}
+        />
         <Title>Senha</Title>
         <InputText secureTextEntry={true} onChangeText={setPassword} />
         <NoRegisterText>
