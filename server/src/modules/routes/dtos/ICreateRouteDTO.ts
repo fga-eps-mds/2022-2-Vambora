@@ -6,4 +6,5 @@ export interface ICreateRouteDTO {
   duration: number,
   origin: string[],
   destination: string[],
+  originNeighborhood: string,
 }

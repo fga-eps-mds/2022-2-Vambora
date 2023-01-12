@@ -30,13 +30,14 @@ model User {
 }
 
 model Route {
-  id          String   @id @default(uuid())
-  name        String
-  description String
-  distance    Int
-  duration    Int
-  origin      String[]
-  destination String[]
+  id                 String   @id @default(uuid())
+  name               String
+  description        String
+  distance           Int
+  duration           Int
+  destination        String[]
+  origin             String[]
+  originNeighborhood String
 
   createdAt DateTime @default(now())
   createdBy String
